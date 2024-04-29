@@ -11,10 +11,10 @@ set -vx
 wget -qO- uny.nu/pkg | bash -s buildsys
 
 ### Installing build dependencies
-unyp install python openssl libidn2 libunistring ninja
+unyp install python libidn2 libunistring
 
-pip3_bin=(/uny/pkg/python/*/bin/pip3)
-"${pip3_bin[0]}" install meson
+#pip3_bin=(/uny/pkg/python/*/bin/pip3)
+#"${pip3_bin[0]}" install meson
 
 ### Getting Variables from files
 UNY_AUTO_PAT="$(cat UNY_AUTO_PAT)"
@@ -73,15 +73,14 @@ get_include_paths
 ####################################################
 ### Start of individual build script
 
-#unset LD_RUN_PATH
+unset LD_RUN_PATH
 
-mkdir build
-cd build || exit
+./autogen.sh
+./configure --prefix=/uny/pkg/"$pkgname"/"$pkgver"
 
-meson setup --prefix=/uny/pkg/"$pkgname"/"$pkgver" --buildtype=release
-ninja
-
-ninja install
+make -j"$(nproc)"
+make -j"$(nproc)" check
+make -j"$(nproc)" install
 
 ####################################################
 ### End of individual build script
