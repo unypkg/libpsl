@@ -73,8 +73,6 @@ get_include_paths
 ####################################################
 ### Start of individual build script
 
-type autoreconf
-echo "$PATH"
 unset LD_RUN_PATH
 
 ./autogen.sh
