@@ -50,8 +50,9 @@ echo "newer" >release-"$pkgname"
 
 git_clone_source_repo
 
-#cd "$pkgname" || exit
-#cd /uny/sources || exit
+cd "$pkgname" || exit
+./autogen.sh
+cd /uny/sources || exit
 
 version_details
 archiving_source
@@ -75,7 +76,6 @@ get_include_paths
 
 unset LD_RUN_PATH
 
-./autogen.sh
 ./configure --prefix=/uny/pkg/"$pkgname"/"$pkgver"
 
 make -j"$(nproc)"
