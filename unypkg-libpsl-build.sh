@@ -58,6 +58,7 @@ git_clone_source_repo
 cd "$pkgname" || exit
 git submodule init
 git submodule update
+rm -f gtk-doc.make 2>/dev/null
 cd /uny/sources || exit
 
 version_details
