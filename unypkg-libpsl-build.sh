@@ -50,13 +50,14 @@ echo "newer" >release-"$pkgname"
 
 git_clone_source_repo
 
-get_pkgconfig_paths
-automake_bin_path=(/uny/pkg/automake/*/bin)
-PATH="${automake_bin_path[0]}":"$PATH"
-export PATH
+#get_pkgconfig_paths
+#automake_bin_path=(/uny/pkg/automake/*/bin)
+#PATH="${automake_bin_path[0]}":"$PATH"
+#export PATH
 
 cd "$pkgname" || exit
-./autogen.sh
+git submodule init
+git submodule update
 cd /uny/sources || exit
 
 version_details
@@ -79,7 +80,9 @@ get_include_paths
 ####################################################
 ### Start of individual build script
 
-unset LD_RUN_PATH
+unset 
+
+autoreconf --install --force --symlink
 
 ./configure --prefix=/uny/pkg/"$pkgname"/"$pkgver"
 
