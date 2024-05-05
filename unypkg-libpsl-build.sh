@@ -59,6 +59,8 @@ cd "$pkgname" || exit
 git submodule init
 git submodule update
 rm -f gtk-doc.make 2>/dev/null
+echo "EXTRA_DIST =" >gtk-doc.make
+echo "CLEANFILES =" >>gtk-doc.make
 cd /uny/sources || exit
 
 version_details
