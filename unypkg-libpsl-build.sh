@@ -50,6 +50,11 @@ echo "newer" >release-"$pkgname"
 
 git_clone_source_repo
 
+get_pkgconfig_paths
+automake_bin_path=(/uny/pkg/automake/*/bin)
+PATH="${automake_bin_path[0]}":"$PATH"
+export PATH
+
 cd "$pkgname" || exit
 ./autogen.sh
 cd /uny/sources || exit
