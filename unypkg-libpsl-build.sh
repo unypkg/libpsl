@@ -74,6 +74,7 @@ archiving_source
 unyc <<"UNYEOF"
 set -vx
 source /uny/git/unypkg/fn
+
 pkgname="libpsl"
 
 version_verbose_log_clean_unpack_cd
@@ -83,7 +84,7 @@ get_include_paths
 ####################################################
 ### Start of individual build script
 
-unset 
+unset LD_RUN_PATH
 
 autoreconf --install --force --symlink
 
