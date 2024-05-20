@@ -63,7 +63,6 @@ echo "EXTRA_DIST =" >gtk-doc.make
 echo "CLEANFILES =" >>gtk-doc.make
 cd /uny/sources || exit
 
-version_details
 archiving_source
 
 ######################################################################################################################
